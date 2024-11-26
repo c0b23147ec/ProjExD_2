@@ -71,13 +71,14 @@ def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
     戻り値pb.Surface
     """
     kk_img = pg.image.load("fig/3.png")
+    kk_flip_img = pg.transform.flip(kk_img,True, False)
     kk_imgs = {(-5, 0): pg.transform.rotozoom(kk_img, 0, 0.9),
                (-5, +5): pg.transform.rotozoom(kk_img, 45, 0.9),
-               (0, 5):pg.transform.rotozoom(pg.transform.flip(kk_img,True, False), 270, 0.9),
-               (5, 5):pg.transform.rotozoom(pg.transform.flip(kk_img,True, False), 315, 0.9),
-               (5, 0):pg.transform.rotozoom(pg.transform.flip(kk_img,True, False), 0, 0.9),
-               (5, -5):pg.transform.rotozoom(pg.transform.flip(kk_img,True, False), 45, 0.9),
-               (0, -5):pg.transform.rotozoom(pg.transform.flip(kk_img,True, False), 90, 0.9),
+               (0, 5):pg.transform.rotozoom(kk_flip_img, 270, 0.9),
+               (5, 5):pg.transform.rotozoom(kk_flip_img, 315, 0.9),
+               (5, 0):pg.transform.rotozoom(kk_flip_img, 0, 0.9),
+               (5, -5):pg.transform.rotozoom(kk_flip_img, 45, 0.9),
+               (0, -5):pg.transform.rotozoom(kk_flip_img, 90, 0.9),
                (-5, -5): pg.transform.rotozoom(kk_img, 315, 0.9),}
     return kk_imgs[sum_mv]
 
