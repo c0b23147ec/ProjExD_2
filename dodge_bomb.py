@@ -83,6 +83,24 @@ def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
     return kk_imgs[sum_mv]
 
 
+def calc_orientation(org: pg.Rect, dst: pg.Rect, current_xy: tuple[float, float]) -> tuple[float, float]:
+    """
+    orgから見て，dstがどこにあるかを計算し，方向ベクトルをタプルで返す
+    引数：ばくだんのrct, こうかとんのrct, ばくだんの速度
+    戻り値：方向ベクトル
+    """
+    dx = dst.centerx - org.centerx
+    dy = dst.centery - org.centery
+    dist = (dx**2 + dy**2)**0.5
+
+    if dist < 300:
+        return current_xy
+    else:
+        norm = (50)**0.5
+        vx = dx / dist * norm
+        vy = dy / dist * norm
+        return vx, vy
+    
 
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
@@ -124,6 +142,7 @@ def main():
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
         screen.blit(kk_img, kk_rct)
 
+        vx, vy = calc_orientation(bb_rct, kk_rct, (vx, vy))
         avx = vx*bb_accs[min(tmr//500, 9)]  # こうかとんの加速(x)
         avy = vy*bb_accs[min(tmr//500, 9)]  # こうかとんの加速(y)
 
