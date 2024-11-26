@@ -86,7 +86,7 @@ def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
 def calc_orientation(org: pg.Rect, dst: pg.Rect, current_xy: tuple[float, float]) -> tuple[float, float]:
     """
     orgから見て，dstがどこにあるかを計算し，方向ベクトルをタプルで返す
-    引数：ばくだんのrct, こうかとんのrct, ばくだんの速度
+    引数:ばくだんのrct, こうかとんのrct, ばくだんの速度
     戻り値：方向ベクトル
     """
     dx = dst.centerx - org.centerx
