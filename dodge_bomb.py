@@ -64,6 +64,7 @@ def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:
 
     return bb_circle, accs
 
+
 def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
     """
     移動量の合計値タプルに対応する向きの画像Surfaceを返す
